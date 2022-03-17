@@ -191,7 +191,7 @@ def main():
 
 
         log.info("  EPOCH: %d  train time: %s  , test time: %s ,  %s ",
-                 epoch,train_time, Tool.elapsed(time.time() - start),time.strftime("%m%d-%H%M%S", time.localtime()))
+                 epoch,train_time, Tools.elapsed(time.time() - start),time.strftime("%m%d-%H%M%S", time.localtime()))
         log.info("  <mrr_5,20,hit_5,20,ndcg_5,20> %.4f, %.4f, %.4f, %.4f, %.4f, %.4f",
                  sum(curr_preds_5) / batch_no_test,
                  sum(curr_preds_20) / batch_no_test,
@@ -205,8 +205,8 @@ def main():
         #     if epoch==0:
         #         continue
         #     elif epoch%15==0 :
-        #         Tool.creatCos(args, text_samples, np.array(sess.run(rnn.embedding)), sess)
-        # Tool.creatSessonCos(args, text_samples, np.array(sess.run(rnn.embedding)), sess)
+        #         Tools.creatCos(args, text_samples, np.array(sess.run(rnn.embedding)), sess)
+        # Tools.creatSessonCos(args, text_samples, np.array(sess.run(rnn.embedding)), sess)
 
 
 if __name__ == '__main__':
