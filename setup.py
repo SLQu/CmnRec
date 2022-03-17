@@ -88,7 +88,7 @@ def main():
 
     args = parser.parse_args()
 
-    log = Tool.getlog(args.log_name)
+    log = Tools.getlog(args.log_name)
     args.log = log
 
     log.info(len(sys.argv))
@@ -129,7 +129,7 @@ def main():
     args.test_size = x_dev.shape[0]
     args.vocab_size = len(items)
 
-    Tool.printargs(args)
+    Tools.printargs(args)
 
     rnn=PTBModel(args)
     rnn.build_model()
@@ -163,7 +163,7 @@ def main():
             batch_no += 1
 
         log.info("  EPOCH: %d  total_loss: %.6f    delta loss: %.6f ",epoch,total_loss,(total_loss - last_loss))
-        train_time = Tool.elapsed(time.time() - start)
+        train_time = Tools.elapsed(time.time() - start)
         last_loss = total_loss
         total_loss = 0
 
@@ -192,6 +192,7 @@ def main():
 
         log.info("  EPOCH: %d  train time: %s  , test time: %s ,  %s ",
                  epoch,train_time, Tools.elapsed(time.time() - start),time.strftime("%m%d-%H%M%S", time.localtime()))
+        batch_no_test = 1 if batch_no_test ==0 else batch_no_test
         log.info("  <mrr_5,20,hit_5,20,ndcg_5,20> %.4f, %.4f, %.4f, %.4f, %.4f, %.4f",
                  sum(curr_preds_5) / batch_no_test,
                  sum(curr_preds_20) / batch_no_test,
